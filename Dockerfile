@@ -27,6 +27,11 @@ RUN mkdir -p /tomcat/logs/
 COPY entrypoint.sh /
 RUN chmod +777 /entrypoint.sh
 
+RUN echo 'Installing Python'
+RUN yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+RUN yum install python36 -y
+RUN python3 --version
+
 EXPOSE 8080 8009
 VOLUME ["/tomcat/webapps", "/tomcat/logs"]
 CMD ["/entrypoint.sh"]
